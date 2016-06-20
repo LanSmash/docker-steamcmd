@@ -14,6 +14,7 @@ BIND is open source software that implements the Domain Name System (DNS) protoc
 
 ## Contributing
 
+This docker is based on https://github.com/sameersbn/docker-bind
 If you find this image useful here's how you can help:
 
 - Send a pull request with your awesome features and bug fixes
