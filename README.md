@@ -1,6 +1,6 @@
 # docker-bind
 
-# lansmash/bind:latest
+# lansmash/docker-bind:latest
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -36,15 +36,15 @@ If the above recommendations do not help then [report your issue](../../issues/n
 
 ## Installation
 
-Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/lansmash/bind) and is the recommended method of installation.
+Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/lansmash/docker-bind) and is the recommended method of installation.
 
 ```bash
-docker pull lansmash/bind:latest
+docker pull lansmash/docker-bind:latest
 ```
 
 Alternatively you can build the image yourself.
 ```bash
-docker build -t lansmash/bind github.com/lansmash/docker-bind
+docker build -t lansmash/docker-bind github.com/lansmash/docker-bind
 ```
 
 
@@ -56,7 +56,7 @@ Start BIND using:
 docker run --name bind -d --restart=always \
   --publish 53:53/tcp --publish 53:53/udp --publish 127.0.0.1:953:953 \
   --volume /srv/bind:/etc/bind \
-  lansmash/bind
+  lansmash/docker-bind
 ```
 
 Watch the logs using:
@@ -105,7 +105,7 @@ To upgrade to newer releases:
   1. Download the updated Docker image:
 
   ```bash
-  docker pull lansmash/bind:latest
+  docker pull lansmash/docker-bind:latest
   ```
 
   2. Stop the currently running image:
@@ -125,7 +125,7 @@ To upgrade to newer releases:
   ```bash
   docker run -name bind -d \
     [OPTIONS] \
-    lansmash/bind:latest
+    lansmash/docker-bind:latest
   ```
 
 ## Shell Access
