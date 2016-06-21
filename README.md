@@ -54,9 +54,9 @@ Start BIND using:
 
 ```bash
 docker run --name bind -d --restart=always \
-  --publish 53:53/tcp --publish 53:53/udp \
-  --volume /srv/docker/bind:/data \
-  lansmash/bind:latest
+  --publish 53:53/tcp --publish 53:53/udp --publish 127.0.0.1:953:953 \
+  --volume /srv/bind:/etc/bind \
+  lansmash/bind
 ```
 
 Watch the logs using:
@@ -67,6 +67,17 @@ docker logs -f bind
 Reloading after config or zone changes:
 ```
  docker exec -it bind rndc reload
+```
+Alternatively, the rndc.key file can be symlinked into /etc/bind on the host and rndc can be run from the host if port 953 is exposed. 
+Add the following to named.conf.local to allow rndc from anywhere:
+```
+controls { inet * allow { any; }; };
+
+```
+```bash
+apt install bind9utils
+ln -s /srv/bind/rndc.key /etc/bind/rndc.key
+rndc reload
 ```
 
 Read the blog post [Deploying a DNS Server using Docker](http://www.damagehead.com/blog/2015/04/28/deploying-a-dns-server-using-docker/) for an example use case.

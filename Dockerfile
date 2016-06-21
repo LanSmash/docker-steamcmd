@@ -9,14 +9,13 @@ ENV BIND_USER=bind
 
 RUN apt-get update && apt-get install -y bind9 perl dnsutils
 
-#COPY overlay/ /
-
 EXPOSE 53/udp 53/tcp 953/tcp
-VOLUME ["/data"]
+VOLUME ["/etc/bind"]
+VOLUME ["/var/lib/bind"]
+
+RUN tar czvfP /etc/bind-defaults.tgz /etc/bind/*
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
 ENTRYPOINT ["/sbin/entrypoint.sh"]
-
-#CMD ["/usr/sbin/named"]
 
