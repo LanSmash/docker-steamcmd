@@ -1,18 +1,23 @@
 #!/bin/bash
 set -e
 
-BIND_USER=bind
+#BIND_USER=bind
 
-mkdir -m 0775 -p /run/named
-chown root:${BIND_USER} /run/named
+#mkdir -m 0775 -p /run/named
+#chown root:${BIND_USER} /run/named
 
-chgrp ${BIND_USER} /etc/bind/rndc.key
+#chgrp ${BIND_USER} /etc/bind/rndc.key
 
-if [ ! -e /etc/bind/named.conf ]; then
-  echo missing named.conf extracting defaults
-  cd /
-  tar xzvf /etc/bind-defaults.tgz
-fi
+#if [ ! -e /etc/bind/named.conf ]; then
+#  echo missing named.conf extracting defaults
+#  cd /
+#  tar xzvf /etc/bind-defaults.tgz
+#fi
+
+cd /srv/steamcmd
+wget -N https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+tar -xvzf steamcmd_osx.tar.gz
+./steamcmd.sh
 
 # allow arguments to be passed to named
 if [[ ${1:0:1} = '-' ]]; then
