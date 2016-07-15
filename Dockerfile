@@ -1,13 +1,13 @@
 FROM ubuntu:16.04
 
 # Ubuntu updates
-RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get upgrade -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV DOCKERBIND_VERSION 1
 ENV DATA_DIR=/data
 
 # Install dependencies
-RUN apt-get update && apt-get install -y curl lib32gcc1
+RUN apt-get update && apt-get install -y curl lib32gcc1 && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #VOLUME ["/srv/steamcmd"]
 
